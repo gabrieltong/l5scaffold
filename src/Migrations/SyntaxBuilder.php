@@ -261,7 +261,7 @@ class SyntaxBuilder
         } elseif ($type == 'view-index-header') {
 
             // Fields to index view
-            $syntax = sprintf("<th>%s", strtoupper($field['name']));
+            $syntax = sprintf("<th>{{ trans('model.%s.%s') }}", $meta['var_name'], strtolower($field['name']));
             $syntax .= '</th>';
 
         } elseif ($type == 'view-index-content') {
@@ -274,9 +274,9 @@ class SyntaxBuilder
 
             // Fields to show view
             $syntax = sprintf("<div class=\"form-group\">\n" .
-                str_repeat(' ', 21) . "<label for=\"%s\">%s</label>\n" .
+                str_repeat(' ', 21) . "<label for=\"%s\">{{trans('model.%s.%s')}}</label>\n" .
                 str_repeat(' ', 21) . "<p class=\"form-control-static\">{{\$%s->%s}}</p>\n" .
-                str_repeat(' ', 16) . "</div>", strtolower($field['name']), strtoupper($field['name']), $meta['var_name'], strtolower($field['name']));
+                str_repeat(' ', 16) . "</div>", strtolower($field['name']), $meta['var_name'],strtolower($field['name']), $meta['var_name'], strtolower($field['name']));
 
 
         } elseif ($type == 'view-edit-content') {
@@ -325,7 +325,7 @@ class SyntaxBuilder
         }
 
         $syntax[] = '<div class="form-group @if($errors->has('."'". $column . "'".')) has-error @endif">';
-        $syntax[] = '   <label for="' . $column . '-field">' . $title . '</label>';
+        $syntax[] = '   <label for="' . $column . '-field">{{ trans( \'model.'. $variable .'.' . strtolower($title) . '\') }}</label>';
 
         if($this->illuminate) {
             $syntax[] = '   {!! Form::' . $input . '("' . $column . '", ' . $value . ', array("class" => "form-control", "id" => "' . $column . '-field")) !!}';

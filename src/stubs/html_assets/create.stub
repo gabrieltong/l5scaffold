@@ -1,8 +1,16 @@
 @extends('layout')
 
+@section('navbar.{{classSingle}}.class')
+    active
+@endsection
+
+@section('title')
+    {{ trans('model.{{classSingle}}.title') }}
+@endsection
+
 @section('header')
     <div class="page-header">
-        <h1><i class="glyphicon glyphicon-plus"></i> {{Class}} / Create </h1>
+        <h1><i class="glyphicon glyphicon-plus"></i> {{ trans('model.{{classSingle}}.title') }} / {{ trans('manage.create') }} </h1>
     </div>
 @endsection
 
@@ -17,8 +25,8 @@
 
                 {{content_fields}}
                 <div class="well well-sm">
-                    <button type="submit" class="btn btn-primary">Create</button>
-                    <a class="btn btn-link pull-right" href="{{ route('{{class}}.index') }}"><i class="glyphicon glyphicon-backward"></i> Back</a>
+                    <button type="submit" class="btn btn-primary">{{ trans('manage.create') }}</button>
+                    <a class="btn btn-link pull-right" href="{{ route('{{class}}.index') }}"><i class="glyphicon glyphicon-backward"></i> {{ trans('manage.back') }}</a>
                 </div>
             </form>
 

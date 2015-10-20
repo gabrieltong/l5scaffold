@@ -1,4 +1,13 @@
 @extends('layout')
+
+@section('navbar.{{classSingle}}.class')
+    active
+@endsection
+
+@section('title')
+    {{ trans('model.{{classSingle}}.title') }}
+@endsection
+
 @section('header')
 <div class="page-header">
         <h1>{{Class}} / Show #{{${{classSingle}}->id}}</h1>
@@ -25,7 +34,7 @@
                 {{content_fields}}
             </form>
 
-            <a class="btn btn-link" href="{{ route('{{class}}.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>
+            <a class="btn btn-link" href="{{ route('{{class}}.index') }}"><i class="glyphicon glyphicon-backward"></i>  {{ trans('manage.back')}} </a>
 
         </div>
     </div>

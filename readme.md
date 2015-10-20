@@ -55,3 +55,4 @@ php artisan migrate
 ![image](http://i62.tinypic.com/11maveb.png)
 ![image](http://i58.tinypic.com/eqchat.png)
 ![image](http://i62.tinypic.com/20h7k8n.png)
+# l5scaffold
