@@ -32,6 +32,11 @@ class MakeController
 
         $name = $this->scaffoldCommandObj->getObjName('Name') . 'Controller';
 
+        $namespace = $this->scaffoldCommandObj->getObjName('Namespace');
+        if($namespace != '')
+        {
+            $name = $namespace . '/' . $name;
+        }
         // Verifica se o arquivo existe com o mesmo o nome
         if ($this->files->exists($path = $this->getPath($name))) {
             return $this->scaffoldCommandObj->error($name . ' already exists!');
@@ -64,6 +69,7 @@ class MakeController
         $this->replaceClassName($stub, "controller")
             ->replaceModelPath($stub)
             ->replaceModelName($stub)
+            ->replaceNameSpace($stub)
             ->replaceSchema($stub, 'controller');
 
 
@@ -113,6 +119,29 @@ class MakeController
         $stub = str_replace('{{model_name_class}}', $model_name_uc, $stub);
         $stub = str_replace('{{model_name_var_sgl}}', $model_name, $stub);
         $stub = str_replace('{{model_name_var}}', $model_names, $stub);
+
+        return $this;
+    }
+
+    private function replaceNameSpace(&$stub)
+    {
+        $namespace_uc = $this->scaffoldCommandObj->getObjName('Namespace');
+        
+        if($namespace_uc != '')
+        {
+            $stub = str_replace('{{namespace_uc}}', '\\'.$namespace_uc, $stub);    
+        }else{
+            $stub = str_replace('{{namespace_uc}}', '', $stub);    
+        }
+        
+        $namespace = $this->scaffoldCommandObj->getObjName('namespace');
+
+        if($namespace != '')
+        {
+            $stub = str_replace('{{namespace}}', $namespace . '.', $stub);    
+        }else{
+            $stub = str_replace('{{namespace}}', '', $stub);    
+        }
 
         return $this;
     }

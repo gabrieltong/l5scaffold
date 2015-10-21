@@ -42,10 +42,18 @@ class MakeView
 
 
     protected function generateView($nameView = 'index'){
+        $name = $this->scaffoldCommandObj->getObjName('names');
+
+        $namespace = $this->scaffoldCommandObj->getObjName('namespace');
+        if($namespace != '')
+        {
+            $name = $namespace . '/' . $name;
+        }
+
         // Get path
-        $path = $this->getPath($this->scaffoldCommandObj->getObjName('names'), 'view-'.$nameView);
+        $path = $this->getPath($name, 'view-'.$nameView);
 
-
+        
         // Create directory
         $this->makeDirectory($path);
 
@@ -83,21 +91,25 @@ class MakeView
         if($nameView == 'show'){
             // show.blade.php
             $this->replaceName($stub)
+                ->replaceNameSpace($stub)
                 ->replaceSchemaShow($stub);
 
         } elseif($nameView == 'edit'){
             // edit.blade.php
             $this->replaceName($stub)
+                ->replaceNameSpace($stub)
                 ->replaceSchemaEdit($stub);
 
         } elseif($nameView == 'create'){
             // edit.blade.php
             $this->replaceName($stub)
+                ->replaceNameSpace($stub)
                 ->replaceSchemaCreate($stub);
 
         } else {
             // index.blade.php
             $this->replaceName($stub)
+                ->replaceNameSpace($stub)
                 ->replaceSchemaIndex($stub);
         }
 
@@ -118,6 +130,20 @@ class MakeView
         $stub = str_replace('{{Class}}', $this->scaffoldCommandObj->getObjName('Names'), $stub);
         $stub = str_replace('{{class}}', $this->scaffoldCommandObj->getObjName('names'), $stub);
         $stub = str_replace('{{classSingle}}', $this->scaffoldCommandObj->getObjName('name'), $stub);
+
+        return $this;
+    }
+
+    protected function replaceNameSpace(&$stub)
+    {
+        $namespace = $this->scaffoldCommandObj->getObjName('namespace');
+
+        if($namespace != '')
+        {
+            $stub = str_replace('{{namespace}}', $namespace . '.', $stub);    
+        }else{
+            $stub = str_replace('{{namespace}}', '', $stub);    
+        }
 
         return $this;
     }

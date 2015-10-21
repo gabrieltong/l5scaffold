@@ -12,7 +12,7 @@
     <div class="page-header clearfix">
         <h1>
             <i class="glyphicon glyphicon-align-justify"></i> {{ trans('model.{{classSingle}}.title') }}
-            <a class="btn btn-success pull-right" href="{{ route('{{class}}.create') }}"><i class="glyphicon glyphicon-plus"></i> {{ trans('manage.create') }}</a>
+            <a class="btn btn-success pull-right" href="{{ route('{{namespace}}{{class}}.create') }}"><i class="glyphicon glyphicon-plus"></i> {{ trans('manage.create') }}</a>
         </h1>
 
     </div>
@@ -37,9 +37,9 @@
                                 <td>{{${{classSingle}}->id}}</td>
                                 {{content_fields}}
                                 <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="{{ route('{{class}}.show', ${{classSingle}}->id) }}"><i class="glyphicon glyphicon-eye-open"></i> {{ trans('manage.view') }} </a>
-                                    <a class="btn btn-xs btn-warning" href="{{ route('{{class}}.edit', ${{classSingle}}->id) }}"><i class="glyphicon glyphicon-edit"></i> {{ trans('manage.edit') }} </a>
-                                    <form action="{{ route('{{class}}.destroy', ${{classSingle}}->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('{{trans('manage.are_you_sure')}}')) { return true } else {return false };">
+                                    <a class="btn btn-xs btn-primary" href="{{ route('{{namespace}}{{class}}.show', ${{classSingle}}->id) }}"><i class="glyphicon glyphicon-eye-open"></i> {{ trans('manage.view') }} </a>
+                                    <a class="btn btn-xs btn-warning" href="{{ route('{{namespace}}{{class}}.edit', ${{classSingle}}->id) }}"><i class="glyphicon glyphicon-edit"></i> {{ trans('manage.edit') }} </a>
+                                    <form action="{{ route('{{namespace}}{{class}}.destroy', ${{classSingle}}->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('{{trans('manage.are_you_sure')}}')) { return true } else {return false };">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> {{ trans('manage.delete') }}</button>

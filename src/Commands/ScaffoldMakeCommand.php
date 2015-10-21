@@ -32,7 +32,7 @@ class ScaffoldMakeCommand extends Command
      *
      * @var string
      */
-    protected $description = 'sss Create a scaffold with bootstrap 3（Gab）';
+    protected $description = 'Create a scaffold with bootstrap 3（Gab）';
 
 
     /**
@@ -152,7 +152,8 @@ class ScaffoldMakeCommand extends Command
     protected function getOptions()
     {
         return [
-            ['schema', 's', InputOption::VALUE_REQUIRED, 'Schema to generate scaffold files. (Ex: --schema="title:string")', null],
+            ['schema', 'schema', InputOption::VALUE_REQUIRED, 'Schema to generate scaffold files. (Ex: --schema="title:string")', null],
+            ['ns', 'ns', InputOption::VALUE_OPTIONAL, 'NameSpace to put files and add namespace. (Ex: --ns="admin")', ''],
             ['form', 'f', InputOption::VALUE_OPTIONAL, 'Use Illumintate/Html Form facade to generate input fields', false]
         ];
     }
@@ -235,6 +236,16 @@ class ScaffoldMakeCommand extends Command
         $names['names'] = str_plural(strtolower(preg_replace('/(?<!^)([A-Z])/', '_$1', $args_name)));
         // Name[3] = tweet
         $names['name'] = str_singular(strtolower(preg_replace('/(?<!^)([A-Z])/', '_$1', $args_name)));
+
+        $namespace = $this->option('ns');
+                // Name[0] = Tweet
+        $names['Namespace'] = str_singular(ucfirst($namespace));
+        // Name[1] = Tweets
+        $names['Namespaces'] = str_plural(ucfirst($namespace));
+        // Name[2] = tweets
+        $names['namespaces'] = str_plural(strtolower(preg_replace('/(?<!^)([A-Z])/', '_$1', $namespace)));
+        // Name[3] = tweet
+        $names['namespace'] = str_singular(strtolower(preg_replace('/(?<!^)([A-Z])/', '_$1', $namespace)));
 
 
         if (!isset($names[$config])) {
