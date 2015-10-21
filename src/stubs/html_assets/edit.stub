@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('{{namespace}}layouts.layout')
 
 @section('navbar.{{classSingle}}.class')
     active

@@ -273,10 +273,10 @@ class SyntaxBuilder
         } elseif ($type == 'view-show-content') {
 
             // Fields to show view
-            $syntax = sprintf("<div class=\"form-group\">\n" .
-                str_repeat(' ', 21) . "<label for=\"%s\">{{trans('model.%s.%s')}}</label>\n" .
-                str_repeat(' ', 21) . "<p class=\"form-control-static\">{{\$%s->%s}}</p>\n" .
-                str_repeat(' ', 16) . "</div>", strtolower($field['name']), $meta['var_name'],strtolower($field['name']), $meta['var_name'], strtolower($field['name']));
+            $syntax = sprintf("<tr>\n" .
+                str_repeat(' ', 21) . "<td>{{trans('model.%s.%s')}}</td>\n" .
+                str_repeat(' ', 21) . "<td >{{\$%s->%s}}</td>\n" .
+                str_repeat(' ', 16) . "</tr>", $meta['var_name'],strtolower($field['name']), $meta['var_name'], strtolower($field['name']));
 
 
         } elseif ($type == 'view-edit-content') {

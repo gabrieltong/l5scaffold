@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('{{namespace}}layouts.layout')
 
 @section('navbar.{{classSingle}}.class')
     active
@@ -10,31 +10,28 @@
 
 @section('header')
 <div class="page-header">
-        <h1>{{ trans('model.{{classSingle}}.title') }} / {{ trans('manage.show') }} #{{${{classSingle}}->id}}</h1>
-        <form action="{{ route('{{namespace}}{{class}}.destroy', ${{classSingle}}->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div class="btn-group pull-right" role="group" aria-label="...">
-                <a class="btn btn-warning btn-group" role="group" href="{{ route('{{namespace}}{{class}}.edit', ${{classSingle}}->id) }}"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                <button type="submit" class="btn btn-danger">Delete <i class="glyphicon glyphicon-trash"></i></button>
-            </div>
-        </form>
-    </div>
+    <h1>
+        {{ trans('model.{{classSingle}}.title') }} / {{ trans('manage.view') }} #{{${{classSingle}}->id}}
+        <div class="btn-group pull-right" role="group" aria-label="...">
+            <form action="{{ route('{{namespace}}{{class}}.destroy', ${{classSingle}}->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('{{trans('message.are_you_sure')}} ')) { return true } else {return false };">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <a class="btn btn-sm btn-link" href="{{ route('admin.fee_cards.index') }}"><i class="glyphicon glyphicon-backward"></i>  {{ trans('manage.back')}} </a>
+                <a class="btn btn-sm btn-default btn-group" role="group" href="{{ route('{{namespace}}{{class}}.edit', ${{classSingle}}->id) }}"><i class="glyphicon glyphicon-edit"></i> {{trans('manage.edit')}}</a>
+                <button type="submit" class="btn btn-sm btn-danger">{{ trans('manage.delete') }} <i class="glyphicon glyphicon-trash"></i></button>        
+            </form>
+        </div>
+    </h1>
+</div>
 @endsection
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
 
-            <form action="#">
-                <div class="form-group">
-                    <label for="nome">ID</label>
-                    <p class="form-control-static"></p>
-                </div>
+            <table class="table table-striped table-bordered">
                 {{content_fields}}
-            </form>
-
-            <a class="btn btn-link" href="{{ route('{{namespace}}{{class}}.index') }}"><i class="glyphicon glyphicon-backward"></i>  {{ trans('manage.back')}} </a>
+            </table>
 
         </div>
     </div>
