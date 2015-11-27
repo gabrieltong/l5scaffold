@@ -9,10 +9,18 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Starter Template</title>
+    <title>管理员后台 - @yield('title')</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link href="//cdn.bootcss.com/smalot-bootstrap-datetimepicker/2.3.4/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/smalot-bootstrap-datetimepicker/2.3.4/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="//cdn.bootcss.com/smalot-bootstrap-datetimepicker/2.3.4/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 
     <!-- Custom styles for this template -->
     <!-- <link href="starter-template.css" rel="stylesheet"> -->
@@ -23,6 +31,11 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript">
+    $(function(){
+        $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii:00',language: 'zh-CN'});
+    })
+    </script>
 </head>
 
 <body>
@@ -44,7 +57,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-            </div><!--/.nav-collapse -->
+            </div>
         </div>
     </nav>
 
@@ -53,13 +66,6 @@
         @yield('content')
     </div><!-- /.container -->
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 
 </body>
 </html>
